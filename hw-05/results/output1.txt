@@ -1,0 +1,34 @@
+
+=== Results for: article1.txt ===
+Existing pattern : 'ритм використовує формули інтерполяції. Найефект'
+Absent pattern   : 'ритм використовує формулӁ інтерполяції. Найефект'
+
+| File         | Case   | Algorithm   | mean    | stdev    | best    | repeat×number |
+|--------------|--------|-------------|---------|----------|---------|---------------|
+| article1.txt | exists | Boyer-Moore | 1.5 ms  | 16.7 µs  | 1.5 ms  | 7×5           |
+| article1.txt | absent | Boyer-Moore | 1.8 ms  | 76.2 µs  | 1.8 ms  | 7×5           |
+| article1.txt | exists | KMP         | 2.7 ms  | 62.8 µs  | 2.6 ms  | 7×5           |
+| article1.txt | absent | KMP         | 5.4 ms  | 73.5 µs  | 5.3 ms  | 7×5           |
+| article1.txt | exists | Rabin-Karp  | 6.8 ms  | 125.8 µs | 6.7 ms  | 7×5           |
+| article1.txt | absent | Rabin-Karp  | 13.0 ms | 147.9 µs | 12.8 ms | 7×5           |
+
+Fastest for 'article1.txt' (minimum mean time): Boyer-Moore — 1.5 ms
+
+
+=== Results for: article2.txt ===
+Existing pattern : 'им розв’язувати багато проблем, які при традицій'
+Absent pattern   : 'им розв’язувати багато пӉоблем, які при традицій'
+
+| File         | Case   | Algorithm   | mean    | stdev    | best    | repeat×number |
+|--------------|--------|-------------|---------|----------|---------|---------------|
+| article2.txt | exists | Boyer-Moore | 2.4 ms  | 14.8 µs  | 2.4 ms  | 7×5           |
+| article2.txt | absent | Boyer-Moore | 2.7 ms  | 18.9 µs  | 2.7 ms  | 7×5           |
+| article2.txt | exists | KMP         | 3.9 ms  | 52.9 µs  | 3.9 ms  | 7×5           |
+| article2.txt | absent | KMP         | 7.6 ms  | 137.3 µs | 7.4 ms  | 7×5           |
+| article2.txt | exists | Rabin-Karp  | 9.6 ms  | 171.9 µs | 9.4 ms  | 7×5           |
+| article2.txt | absent | Rabin-Karp  | 18.4 ms | 180.0 µs | 18.1 ms | 7×5           |
+
+Fastest for 'article2.txt' (minimum mean time): Boyer-Moore — 2.4 ms
+
+=== Overall fastest algorithm (minimum mean time across all files/cases) ===
+Boyer-Moore — 1.5 ms (file: article1.txt, case: exists)

@@ -58,17 +58,60 @@ Conclusion: dynamic programming achieves equal or higher calories for this budge
 ```bash
 python task-07.py
 ```
-Empirical probabilities:
-2: 2.76%
-3: 5.62%
-4: 8.33%
-5: 11.12%
-6: 13.84%
-7: 16.72%
-8: 13.86%
-9: 11.14%
-10: 8.35%
-11: 5.49%
-12: 2.77%
-Conclusion: empirical probabilities approach theoretical values as n grows; 7 is the most likely sum (~16.67%).
-![dice.png](docs/dice.png)
+
+Empirical vs Theoretical (probabilities)
+Sum |  Empirical   Theoretical   Abs.Error
+-------------------------------------------
+  2 |    2.7267%      2.7778%     0.0511%
+  3 |    5.5440%      5.5556%     0.0116%
+  4 |    8.3323%      8.3333%     0.0010%
+  5 |   11.1547%     11.1111%     0.0436%
+  6 |   13.8813%     13.8889%     0.0076%
+  7 |   16.6207%     16.6667%     0.0460%
+  8 |   13.9327%     13.8889%     0.0438%
+  9 |   11.0590%     11.1111%     0.0521%
+ 10 |    8.4600%      8.3333%     0.1267%
+ 11 |    5.5140%      5.5556%     0.0416%
+ 12 |    2.7747%      2.7778%     0.0031%
+-------------------------------------------
+MAE:  0.0389%
+RMSE: 0.0515%
+Max error: 0.1267% at sum=10
+Chi-square (11 dof): 11.66
+Conclusion: With large n, MAE and RMSE are small and the chi-square is modest, which indicates the Monte Carlo distribution matches the analytic distribution.
+
+Empirical vs Theoretical (probabilities)
+Sum |  Empirical   Theoretical   Abs.Error
+-------------------------------------------
+  2 |    2.7350%      2.7778%     0.0428%
+  3 |    5.5143%      5.5556%     0.0412%
+  4 |    8.3130%      8.3333%     0.0203%
+  5 |   11.0930%     11.1111%     0.0181%
+  6 |   13.9253%     13.8889%     0.0364%
+  7 |   16.7303%     16.6667%     0.0637%
+  8 |   13.9627%     13.8889%     0.0738%
+  9 |   11.1617%     11.1111%     0.0506%
+ 10 |    8.2270%      8.3333%     0.1063%
+ 11 |    5.5420%      5.5556%     0.0136%
+ 12 |    2.7957%      2.7778%     0.0179%
+-------------------------------------------
+MAE:  0.0441%
+RMSE: 0.0518%
+Max error: 0.1063% at sum=10
+Chi-square (11 dof): 10.53
+Conclusion: With large n, MAE and RMSE are small and the chi-square is modest, which indicates the Monte Carlo distribution matches the analytic distribution.
+
+![dice1.png](docs/dice1.png)
+![dice2.png](docs/dice2.png)
+
+
+!!! Attention. Conclusions are here: !!!
+
+# Conclusions
+
+Two independent Monte Carlo runs with n ≈ **300,000** rolls each produced probability estimates for sums of two dice.
+- The **mean absolute error (MAE)** was about **0.04%**,
+- The **RMSE** about **0.05%**,
+- The **largest single deviation** was ~0.1% (at sum = 10).
+- The **chi-square statistics** (≈ 10–12 with 11 degrees of freedom) are modest, consistent with sampling noise.
+These results show the simulated probabilities align extremely closely with the analytic distribution (1/36 through 6/36). Any differences are negligible and entirely due to finite sampling. The Monte Carlo approach therefore validates the theoretical model while demonstrating convergence as the number of trials grows.

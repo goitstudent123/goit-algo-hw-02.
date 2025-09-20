@@ -25,37 +25,31 @@ def build_example_tree():
     return root
 
 def to_graph(root):
+    import networkx as nx
     G = nx.DiGraph()
-    nodes = []
-    q = [(root, 0)]
+    q = [(root, 0)]              # heap index: root = 0
     while q:
-        node, idx = q.pop(0)
-        nodes.append((node, idx))
-        G.add_node(idx, label=str(node.val))
+        node, i = q.pop(0)
+        G.add_node(i, label=str(node.val))
         if node.left:
-            li = len(nodes) + len(q) + 1
+            li = 2 * i + 1       # left child index
             q.append((node.left, li))
-            G.add_edge(idx, li)
+            G.add_edge(i, li)
         if node.right:
-            ri = len(nodes) + len(q) + 1
+            ri = 2 * i + 2       # right child index
             q.append((node.right, ri))
-            G.add_edge(idx, ri)
+            G.add_edge(i, ri)
     return G
 
-def layout_complete(G):
-    n = len(G.nodes)
+def layout_complete(G, y_gap=1.2):
     pos = {}
-    def level(i):
-        l = 0
-        while (1 << l) <= i+1:
-            l += 1
-        return l - 1
     for i in G.nodes:
-        l = level(i)
-        idx_in_level = i - ((1<<l) - 1)
-        width = 2 ** l
-        x = (idx_in_level + 1) / (width + 1)
-        y = -l
+        level = (i + 1).bit_length() - 1              # level of heap index
+        first_at_level = (1 << level) - 1
+        idx_in_level = i - first_at_level
+        width = 1 << level
+        x = (idx_in_level + 1) / (width + 1)          # evenly spaced across row
+        y = -level * y_gap
         pos[i] = (x, y)
     return pos
 
